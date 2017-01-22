@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ManagerParcAuto1</string>
+    <string name="enter_name">Numar Inmatriculare</string>
+    <string name="add_record">Add Record</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="empty_list_text">No records found</string>
+    <string name="enter_marca">Marca</string>
+    <string name="enter_type">Tipul</string>
+    <string name="enter_title">Numar Inmatriculare</string>
+    <string name="data_inmatricularii">Data Inmatriculare</string>
+    <string name="sofer">Soferul</string>
+
+</resources>
