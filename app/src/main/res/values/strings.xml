@@ -4,6 +4,7 @@
     <string name="add_record">Add Record</string>
     <string name="btn_update">Update</string>
     <string name="btn_delete">Delete</string>
+    <string name="btn_send">Send</string>
     <string name="empty_list_text">No records found</string>
     <string name="enter_marca">Marca</string>
     <string name="enter_type">Tipul</string>

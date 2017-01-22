@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class AutoturismListActivity extends ActionBarActivity {
+public class AutoturismListActivity extends AppCompatActivity {
 
     private DBManager dbManager;
 
@@ -23,7 +23,7 @@ public class AutoturismListActivity extends ActionBarActivity {
     final String[] from = new String[] { DatabaseHelper._ID,
             DatabaseHelper.NR_INM, DatabaseHelper.MARCA, DatabaseHelper.TIP, DatabaseHelper.DATA, DatabaseHelper.SOFER};
 
-    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc, R.id.type, R.id.data, R.id.sofer };
+    final int[] to = new int[] { R.id.id, R.id.numar, R.id.marca, R.id.type, R.id.data, R.id.sofer };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,24 +49,23 @@ public class AutoturismListActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView idTextView = (TextView) view.findViewById(R.id.id);
-                TextView titleTextView = (TextView) view.findViewById(R.id.title);
-                TextView descTextView = (TextView) view.findViewById(R.id.desc);
+                TextView numarTextView = (TextView) view.findViewById(R.id.numar);
+                TextView marcaTextView = (TextView) view.findViewById(R.id.marca);
                 TextView typeTextView = (TextView) view.findViewById(R.id.type);
                 TextView dataTextView = (TextView) view.findViewById(R.id.data);
                 TextView soferTextView = (TextView) view.findViewById(R.id.sofer);
 
 
-
                 String id = idTextView.getText().toString();
-                String title = titleTextView.getText().toString();
-                String desc = descTextView.getText().toString();
+                String numar = numarTextView.getText().toString();
+                String marca = marcaTextView.getText().toString();
                 String tip = typeTextView.getText().toString();
                 String data = dataTextView.getText().toString();
                 String sofer = soferTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), ModifyAutoActivity.class);
-                modify_intent.putExtra("title", title);
-                modify_intent.putExtra("desc", desc);
+                modify_intent.putExtra("numar", numar);
+                modify_intent.putExtra("marca", marca);
                 modify_intent.putExtra("tipul", tip);
                 modify_intent.putExtra("data", data);
                 modify_intent.putExtra("sofer", sofer);

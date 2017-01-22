@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ModifyAutoActivity extends Activity implements OnClickListener {
 
-    private Button updateBtn, deleteBtn;
+    private Button updateBtn, deleteBtn, sendBtn;
     private EditText nrText;
     private EditText marcaText;
     private EditText tipText;
@@ -41,10 +42,11 @@ public class ModifyAutoActivity extends Activity implements OnClickListener {
 
         updateBtn = (Button) findViewById(R.id.btn_update);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
+        sendBtn = (Button) findViewById(R.id.btn_send);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
-        String numar = intent.getStringExtra("title");
+        String numar = intent.getStringExtra("numar");
         String marca = intent.getStringExtra("marca");
         String type = intent.getStringExtra("tipul");
         String data = intent.getStringExtra("data");
@@ -62,20 +64,26 @@ public class ModifyAutoActivity extends Activity implements OnClickListener {
 
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
+        sendBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        String nr = nrText.getText().toString();
+        String marca = marcaText.getText().toString();
+        String type = tipText.getText().toString();
+        String data = dataText.getText().toString();
+        String sofer = soferText.getText().toString();
+        String msgEmail="Autoturismul cu numarul:"+nr
+                +"\nmarca: "+marca
+                +"\nde tipul: "+type
+                +"\ninmatriculata in data: "+data
+                +"\nutilizata de: "+sofer.toUpperCase();
+
         switch (v.getId()) {
             case R.id.btn_update:
-                String nr = nrText.getText().toString();
-                String marca = marcaText.getText().toString();
-                String type = tipText.getText().toString();
-                String data = dataText.getText().toString();
-                String sofer = soferText.getText().toString();
 
-
-                dbManager.update(_id, nr, marca,type,data,sofer);
+               dbManager.update(_id, nr, marca,type,data,sofer);
                 this.returnHome();
                 break;
 
@@ -83,6 +91,18 @@ public class ModifyAutoActivity extends Activity implements OnClickListener {
                 dbManager.delete(_id);
                 this.returnHome();
                 break;
+
+            case R.id.btn_send:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"Introduceti adresa de email"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Date despre autoturismul: "+nr.toUpperCase());
+                i.putExtra(Intent.EXTRA_TEXT   ,msgEmail );
+                try {
+                    startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
         }
     }
 
