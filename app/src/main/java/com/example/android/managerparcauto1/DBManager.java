@@ -32,17 +32,29 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String nr_inm, String marca, String tip, String data, String sofer) {
+    public void insertAuto(Auto aut) {
         ContentValues contentValue = new ContentValues();
 
-        contentValue.put(DatabaseHelper.NR_INM, nr_inm);
-        contentValue.put(DatabaseHelper.MARCA, marca);
-        contentValue.put(DatabaseHelper.TIP, tip);
-        contentValue.put(DatabaseHelper.DATA, data);
-        contentValue.put(DatabaseHelper.SOFER, sofer);
+        contentValue.put(DatabaseHelper.NR_INM, aut.getNr_inm());
+        contentValue.put(DatabaseHelper.MARCA, aut.getMarca());
+        contentValue.put(DatabaseHelper.TIP, aut.getTip());
+        contentValue.put(DatabaseHelper.DATA, aut.getData());
+        contentValue.put(DatabaseHelper.SOFER, aut.getSofer());
 
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
+
+//    public void insert(String nr_inm, String marca, String tip, String data, String sofer) {
+//        ContentValues contentValue = new ContentValues();
+//
+//        contentValue.put(DatabaseHelper.NR_INM, nr_inm);
+//        contentValue.put(DatabaseHelper.MARCA, marca);
+//        contentValue.put(DatabaseHelper.TIP, tip);
+//        contentValue.put(DatabaseHelper.DATA, data);
+//        contentValue.put(DatabaseHelper.SOFER, sofer);
+//
+//        database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
+//    }
 
     public Cursor fetch() {
         String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.NR_INM, DatabaseHelper.MARCA,
@@ -55,17 +67,30 @@ public class DBManager {
         return cursor;
     }
 
-    public int update(long _id, String nr_inm, String marca, String tip, String data, String sofer) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.NR_INM, nr_inm);
-        contentValues.put(DatabaseHelper.MARCA, marca);
-        contentValues.put(DatabaseHelper.TIP, tip);
-        contentValues.put(DatabaseHelper.DATA, data);
-        contentValues.put(DatabaseHelper.SOFER, sofer);
+    public int updateAuto(long _id, Auto aut) {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.NR_INM, aut.getNr_inm());
+        values.put(DatabaseHelper.MARCA, aut.getMarca());
+        values.put(DatabaseHelper.TIP, aut.getTip());
+        values.put(DatabaseHelper.DATA, aut.getData());
+        values.put(DatabaseHelper.SOFER, aut.getSofer());
+        ;
 
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
+        int i = database.update(DatabaseHelper.TABLE_NAME, values, DatabaseHelper._ID + " = " + _id, null);
         return i;
     }
+
+//    public int update(long _id, String nr_inm, String marca, String tip, String data, String sofer) {
+//        ContentValues contentValues = new ContentValues();
+//        contentValues.put(DatabaseHelper.NR_INM, nr_inm);
+//        contentValues.put(DatabaseHelper.MARCA, marca);
+//        contentValues.put(DatabaseHelper.TIP, tip);
+//        contentValues.put(DatabaseHelper.DATA, data);
+//        contentValues.put(DatabaseHelper.SOFER, sofer);
+//
+//        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
+//        return i;
+//    }
 
     public void delete(long _id) {
         database.delete(DatabaseHelper.TABLE_NAME, DatabaseHelper._ID + "=" + _id, null);

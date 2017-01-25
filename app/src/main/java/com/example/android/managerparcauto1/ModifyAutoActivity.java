@@ -53,13 +53,15 @@ public class ModifyAutoActivity extends Activity implements OnClickListener {
         String sofer = intent.getStringExtra("sofer");
 
 
+        Auto a = new Auto(numar, marca, type, data, sofer);
+
         _id = Long.parseLong(id);
 
-        nrText.setText(numar);
-        marcaText.setText(marca);
-        tipText.setText(type);
-        dataText.setText(data);
-        soferText.setText(sofer);
+        nrText.setText(a.getNr_inm());
+        marcaText.setText(a.getMarca());
+        tipText.setText(a.getTip());
+        dataText.setText(a.getData());
+        soferText.setText(a.getSofer());
 
 
         updateBtn.setOnClickListener(this);
@@ -69,21 +71,25 @@ public class ModifyAutoActivity extends Activity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+
         String nr = nrText.getText().toString();
         String marca = marcaText.getText().toString();
         String type = tipText.getText().toString();
         String data = dataText.getText().toString();
         String sofer = soferText.getText().toString();
-        String msgEmail="Autoturismul cu numarul:"+nr
-                +"\nmarca: "+marca
-                +"\nde tipul: "+type
-                +"\ninmatriculata in data: "+data
-                +"\nutilizata de: "+sofer.toUpperCase();
+
+        Auto a = new Auto(nr, marca, type, data, sofer);
+
+        String msgEmail = "Autoturismul cu numarul:" + a.getNr_inm()
+                + "\nmarca: " + a.getMarca()
+                + "\nde tipul: " + a.getTip()
+                + "\ninmatriculata in data: " + a.getData()
+                + "\nutilizata de: " + a.getSofer();
 
         switch (v.getId()) {
             case R.id.btn_update:
 
-               dbManager.update(_id, nr, marca,type,data,sofer);
+                dbManager.updateAuto(_id, a);
                 this.returnHome();
                 break;
 

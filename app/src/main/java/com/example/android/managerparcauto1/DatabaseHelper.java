@@ -13,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Name
     public static final String TABLE_NAME = "AUTOTURISME";
 
+
     // Table columns
     public static final String _ID = "_id";
     public static final String NR_INM = "nr_inmatriculare";
@@ -26,7 +27,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // database version
     static final int DB_VERSION = 1;
-
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "("
             + _ID+ " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -35,6 +35,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + TIP + " TEXT NOT NULL, "
             + DATA + " TEXT NOT NULL, "
             + SOFER + " TEXT);";
+    private String n, m, t, d, s;
+    Auto a = new Auto(n, m, t, d, s);
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
