@@ -50,7 +50,7 @@ public class AddAutoActivity extends AppCompatActivity implements OnClickListene
                 final String tip = tipEt.getText().toString();
                 final String data = dataEt.getText().toString();
                 final String sofer = soferEt.getText().toString();
-
+//creeam un obiect de tip auto
                 Auto auto = new Auto(numar, marca, tip, data, sofer);
 
                 dbManager.insertAuto(auto);
