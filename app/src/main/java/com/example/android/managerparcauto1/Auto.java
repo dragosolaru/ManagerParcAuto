@@ -6,13 +6,13 @@ package com.example.android.managerparcauto1;
 
 public class Auto {
 
-    public String nr_inm;
-    public String marca;
-    public String tip;
-    public String data;
-    public String sofer;
+    private String nr_inm;
+    private String marca;
+    private String tip;
+    private String data;
+    private String sofer;
 
-    public Auto(String nr_inm, String marca, String tip, String data, String sofer) {
+    Auto(String nr_inm, String marca, String tip, String data, String sofer) {
         this.nr_inm = nr_inm;
         this.marca = marca;
         this.tip = tip;

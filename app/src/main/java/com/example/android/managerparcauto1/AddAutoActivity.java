@@ -1,15 +1,15 @@
 package com.example.android.managerparcauto1;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
 
-public class AddAutoActivity extends Activity implements OnClickListener {
+public class AddAutoActivity extends AppCompatActivity implements OnClickListener {
     private Button addTodoBtn;
     private EditText numarEt;
     private EditText marcaEt;
