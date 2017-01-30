@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 public class ModifyAutoActivity extends AppCompatActivity implements OnClickListener {
 
-    private Button updateBtn, deleteBtn, sendBtn;
+    // private Button updateBtn, deleteBtn, sendBtn;
     private EditText nrText;
     private EditText marcaText;
     private EditText tipText;
@@ -28,7 +30,7 @@ public class ModifyAutoActivity extends AppCompatActivity implements OnClickList
 
         setTitle("Modify Record");
 
-        setContentView(R.layout.activity_modify_auto);
+        setContentView(R.layout.activity_add_modify_auto);
 
         dbManager = new DBManager(this);
         dbManager.open();
@@ -38,11 +40,6 @@ public class ModifyAutoActivity extends AppCompatActivity implements OnClickList
         tipText = (EditText) findViewById(R.id.tipul);
         dataText = (EditText) findViewById(R.id.data);
         soferText = (EditText) findViewById(R.id.sofer);
-
-
-        updateBtn = (Button) findViewById(R.id.btn_update);
-        deleteBtn = (Button) findViewById(R.id.btn_delete);
-        sendBtn = (Button) findViewById(R.id.btn_send);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
@@ -62,6 +59,27 @@ public class ModifyAutoActivity extends AppCompatActivity implements OnClickList
         tipText.setText(a.getTip());
         dataText.setText(a.getData());
         soferText.setText(a.getSofer());
+
+        //creare dinamica butoane pentru update, delete si send
+        LinearLayout ll = (LinearLayout) findViewById(R.id.layout_button_add);
+
+        TableRow tr1 = new TableRow(this);
+
+        Button updateBtn = new Button(this);
+        updateBtn.setText("UPDATE");
+        updateBtn.setId(R.id.btn_update);
+        tr1.addView(updateBtn);
+
+        Button deleteBtn = new Button(this);
+        deleteBtn.setText("Delete");
+        deleteBtn.setId(R.id.btn_delete);
+        tr1.addView(deleteBtn);
+
+        Button sendBtn = new Button(this);
+        sendBtn.setText("SEND");
+        sendBtn.setId(R.id.btn_send);
+        tr1.addView(sendBtn);
+        ll.addView(tr1);
 
 
         updateBtn.setOnClickListener(this);

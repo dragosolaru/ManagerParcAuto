@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 
 public class AddAutoActivity extends AppCompatActivity implements OnClickListener {
-    private Button addTodoBtn;
+    // private Button addTodoBtn;
     private EditText numarEt;
     private EditText marcaEt;
     private EditText tipEt;
@@ -24,7 +26,7 @@ public class AddAutoActivity extends AppCompatActivity implements OnClickListene
 
         setTitle("Add Record");
 
-        setContentView(R.layout.activity_add_auto);
+        setContentView(R.layout.activity_add_modify_auto);
 
         numarEt = (EditText) findViewById(R.id.numar);
         marcaEt = (EditText) findViewById(R.id.marca);
@@ -32,11 +34,21 @@ public class AddAutoActivity extends AppCompatActivity implements OnClickListene
         dataEt = (EditText) findViewById(R.id.data);
         soferEt = (EditText) findViewById(R.id.sofer);
 
-        addTodoBtn = (Button) findViewById(R.id.add_record);
+        // addTodoBtn = (Button) findViewById(R.id.add_record);
+
+        //cream dinamic butonul "ADD"
+        LinearLayout ll = (LinearLayout) findViewById(R.id.layout_button_add);
+        ViewGroup.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        Button addBtn = new Button(this);
+        addBtn.setText("ADD");
+        addBtn.setId(R.id.add_record);
+        ll.addView(addBtn, lp);
 
         dbManager = new DBManager(this);
         dbManager.open();
-        addTodoBtn.setOnClickListener(this);
+
+        addBtn.setOnClickListener(this);
     }
 
     @Override
@@ -50,7 +62,8 @@ public class AddAutoActivity extends AppCompatActivity implements OnClickListene
                 final String tip = tipEt.getText().toString();
                 final String data = dataEt.getText().toString();
                 final String sofer = soferEt.getText().toString();
-//creeam un obiect de tip auto
+
+                //creeam un obiect de tip auto
                 Auto auto = new Auto(numar, marca, tip, data, sofer);
 
                 dbManager.insertAuto(auto);

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_update" type="id">btn_update</item>
+    <item name="btn_delete" type="id">btn_delete</item>
+    <item name="btn_send" type="id">btn_send</item>
+</resources>

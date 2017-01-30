@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="10dp">
 
     <EditText
         android:id="@+id/numar"
@@ -22,8 +22,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_marca"
-        android:inputType="textMultiLine|textCapWords">
-    </EditText>
+        android:inputType="textMultiLine|textCapWords"></EditText>
 
     <EditText
         android:id="@+id/tipul"
@@ -31,17 +30,15 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/enter_type"
-        android:inputType="textMultiLine">
-    </EditText>
+        android:inputType="textMultiLine"></EditText>
+
     <EditText
         android:id="@+id/data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/data_inmatricularii"
-        android:inputType="date"
-        android:onClick="">
-    </EditText>
+        android:inputType="date"></EditText>
 
     <EditText
         android:id="@+id/sofer"
@@ -50,13 +47,17 @@
         android:ems="10"
         android:hint="@string/sofer"
         android:inputType="textCapWords">
+
     </EditText>
 
-    <Button
-        android:id="@+id/add_record"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout_button_add"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/add_record" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="3">/>
+    </LinearLayout>
+
 
 </LinearLayout>

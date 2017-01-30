@@ -14,16 +14,12 @@ import android.widget.TextView;
 
 public class AutoturismListActivity extends AppCompatActivity {
 
-    private DBManager dbManager;
-
-    private ListView listView;
-
-    private SimpleCursorAdapter adapter;
-
-    final String[] from = new String[] { DatabaseHelper._ID,
+    final String[] from = new String[]{DatabaseHelper._ID,
             DatabaseHelper.NR_INM, DatabaseHelper.MARCA, DatabaseHelper.TIP, DatabaseHelper.DATA, DatabaseHelper.SOFER};
-
-    final int[] to = new int[] { R.id.id, R.id.numar, R.id.marca, R.id.type, R.id.data, R.id.sofer };
+    final int[] to = new int[]{R.id.id, R.id.numar, R.id.marca, R.id.type, R.id.data, R.id.sofer};
+    private DBManager dbManager;
+    private ListView listView;
+    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
